@@ -23,4 +23,13 @@ function app() {
 
         addTaskToList(task)
     }
+
+    function editTask(index, title, description, date, priority, status, tag) {
+        taskList[index].title = title
+        taskList[index].description = description
+        taskList[index].dueDate = date
+        taskList[index].priority = priority
+        taskList[index].status = taskList[index].getStatus(status)
+        taskList[index].tag = tag
+    }
 }
