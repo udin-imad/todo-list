@@ -32,4 +32,8 @@ function app() {
         taskList[index].status = taskList[index].getStatus(status)
         taskList[index].tag = tag
     }
+
+    function deleteTask(index) {
+        taskList.splice(index, 1)
+    }
 }
