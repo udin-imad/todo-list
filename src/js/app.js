@@ -36,4 +36,21 @@ function app() {
     function deleteTask(index) {
         taskList.splice(index, 1)
     }
+
+    const personalTag = () => {
+        return taskList.filter(el => el.tag.toLowerCase() === 'personal')
+    }
+
+    const projectTag = () => {
+        return taskList.filter(el => el.tag.toLowerCase() === 'project')
+    }
+
+    return { taskList, personalTag, projectTag, createNewTask, deleteTask, editTask }
 }
+
+const task = app()
+task.createNewTask('grocery shopping', 'restock ingredients and foods', 'tomorrow', 'high', false, 'personal')
+task.createNewTask('create web app', 'discuss with jhon about creating new web app', 'tomorrow', 'high', false, 'project')
+console.log(task.taskList)
+console.log(task.personalTag())
+console.log(task.projectTag())
