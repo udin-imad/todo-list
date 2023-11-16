@@ -1,16 +1,22 @@
-function app() {
+import { compareAsc, addDays, startOfWeek, endOfWeek, isWithinInterval } from "date-fns";
+
+export function app() {
     const taskList = [];
     class Task {
         constructor(title, description, date, priority, status, tag) {
             this.title = title
             this.description = description
-            this.dueDate = date
+            this.dueDate = this.getDueDate(date)
             this.priority = priority
             this.status = this.getStatus(status)
             this.tag = tag
         }
         getStatus(status) {
             return status ? 'Completed' : 'Not complete'
+        }
+
+        getDueDate(date) {
+            return new Date(date)
         }
     }
 
@@ -45,12 +51,45 @@ function app() {
         return taskList.filter(el => el.tag.toLowerCase() === 'project')
     }
 
-    return { taskList, personalTag, projectTag, createNewTask, deleteTask, editTask }
-}
+    const sortTasksByDueDate = () => {
+        return taskList.sort((a, b) => compareAsc(a.dueDate, b.dueDate))
+    }
 
-const task = app()
-task.createNewTask('grocery shopping', 'restock ingredients and foods', 'tomorrow', 'high', false, 'personal')
-task.createNewTask('create web app', 'discuss with jhon about creating new web app', 'tomorrow', 'high', false, 'project')
-console.log(task.taskList)
-console.log(task.personalTag())
-console.log(task.projectTag())
+    const getTasksDueToday = () => {
+        const today = new Date()
+        return taskList.filter(task => task.dueDate.toDateString() === today.toDateString())
+    }
+
+    const getTasksForNextWeek = () => {
+        const today = new Date();
+        const startOfNextWeek = startOfWeek(today, { weekStartsOn: 1 }); // Assuming week starts on Monday
+        const endOfNextWeek = endOfWeek(today, { weekStartsOn: 1 });
+
+        return taskList.filter(task =>
+            isWithinInterval(task.dueDate, { start: startOfNextWeek, end: endOfNextWeek })
+        );
+    }
+
+    const getTasksForCurrentWeek = () => {
+        const today = new Date();
+        const startOfCurrentWeek = startOfWeek(today, { weekStartsOn: 1 }); // Assuming week starts on Monday
+        const endOfCurrentWeek = endOfWeek(today, { weekStartsOn: 1 });
+
+        return taskList.filter(task =>
+            isWithinInterval(task.dueDate, { start: startOfCurrentWeek, end: endOfCurrentWeek })
+        );
+    }
+
+    return {
+        taskList,
+        personalTag,
+        projectTag,
+        createNewTask,
+        deleteTask,
+        editTask,
+        sortTasksByDueDate,
+        getTasksDueToday,
+        getTasksForNextWeek,
+        getTasksForCurrentWeek
+    }
+}
