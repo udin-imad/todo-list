@@ -18,11 +18,11 @@
     <div id="header">Todo List</div>
     <div id="menu">
       <ul>
-        <li id="task">
+        <li id="task-button">
           <p>New Task</p>
           <p>+</p>
         </li>
-        <li><a href="#">Home</a></li>
+        <li><a href="#content">Home</a></li>
         <li><a href="#">Today</a></li>
         <li><a href="#">Week</a></li>
         <li><a href="#">Personal</a></li>
@@ -30,8 +30,27 @@
       </ul>
     </div>
     <div id="content">
-
+      <p>All Task</p>
+      <table id="task-list">
+      </table>
     </div>
+    <dialog class="modal">
+      <form action="#">
+        <input type="text" name="title" id="title" aria-label="title" placeholder="Title">
+        <input type="text" name="description" id="description" aria-label="description" placeholder="Description">
+        <input type="date" name="date" id="date" aria-label="date">
+        <select name="priority" id="priority">
+          <option value="&#128681 &#128681 &#128681">&#128681 &#128681 &#128681</option>
+          <option value="&#128681 &#128681">&#128681 &#128681</option>
+          <option value="&#128681">&#128681</option>
+        </select>
+        <select name="tag" id="tag">
+          <option value="Personal">Personal</option>
+          <option value="Project">Project</option>
+        </select>
+        <button>Submit</button>
+      </form>
+    </dialog>
     <div id="footer">udin-imad &copy; 2023</div>
   </div>
 </body>

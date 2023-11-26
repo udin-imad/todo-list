@@ -52,7 +52,7 @@ ul {
   display: flex;
   flex-direction: column;
   padding-left: 24px;
-  padding-top: 24px;
+  padding-top: 6px;
   padding-right: 12px;
   gap: 12px;
 }
@@ -113,7 +113,7 @@ ul>li>a:hover::after {
   cursor: pointer;
 }
 
-#task {
+#task-button {
   user-select: none;
   display: flex;
   color: var(--bg-color);
@@ -130,7 +130,7 @@ ul>li>a:hover::after {
   transition: 1.5ms;
 }
 
-#task p+p {
+#task-button p+p {
   background: transparent;
   border: none;
   color: var(--bg-color);
@@ -138,10 +138,135 @@ ul>li>a:hover::after {
   font-weight: 300;
 }
 
-#task:hover {
+#task-button:hover {
   opacity: 0.8;
 }
 
-#task:active {
+#task-button:active {
   opacity: 0.5;
+}
+
+#content {
+  padding-left: 24px;
+  padding-top: 24px;
+  padding-right: 12px;
+}
+
+#content>p {
+  color: var(--bg-color);
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--bg-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+#task-button-list {
+  margin-top: 8px;
+}
+
+.row {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
+  gap: 8px;
+  color: var(--bg-color);
+  border-bottom: 1px solid var(--bg-color);
+  transition: 0.3s;
+}
+
+.row:hover {
+  box-shadow: 0 3px 8px rgba(73, 73, 73, 0.5);
+  border: none;
+  transform: scaleX(1.015)
+}
+
+.checkbox {
+  width: 25px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td:nth-child(2) {
+  width: 180px;
+}
+
+td:nth-child(3) {
+  width: 300px;
+}
+
+td:nth-child(4) {
+  width: 120px;
+}
+
+td:nth-child(5) {
+  width: 100px;
+}
+
+td:nth-child(6) {
+  width: 100px;
+}
+
+.delete-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 40px;
+}
+
+dialog {
+  top: -60%;
+  margin: auto;
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+form {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  font-size: 1rem;
+  padding: 2px 4px;
+  color: var(--bg-color);
+  outline: none;
+}
+
+input::placeholder {
+  opacity: 0.4;
+}
+
+select {
+  font-size: 1rem;
+  padding: 2px 4px;
+}
+
+dialog>form>#description {
+  width: 300px;
+}
+
+dialog>form>button {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 4px 16px;
+  color: white;
+  background-color: var(--bg-color);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+select {
+  outline: none;
+  color: var(--bg-color);
 }
