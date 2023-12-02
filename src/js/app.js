@@ -1,12 +1,13 @@
 import { compareAsc, startOfWeek, endOfWeek, isWithinInterval } from "date-fns";
 
 export function app() {
-  const taskList = [];
+  const taskList = JSON.parse(localStorage.getItem("taskList")) || [];
   class Task {
     constructor(title, description, date, priority, tag) {
+      this.id = Math.floor(Math.random() * 1000)
       this.title = title
       this.description = description
-      this.dueDate = this.getDueDate(date)
+      this.dueDate = this.getDueDate(date).toDateString()
       this.priority = priority
       this.tag = tag
     }
@@ -19,8 +20,13 @@ export function app() {
     }
   }
 
+  function updateLocalStorage() {
+    localStorage.setItem("taskList", JSON.stringify(taskList))
+  }
+
   function addTaskToList(task) {
     taskList.push(task)
+    updateLocalStorage()
   }
 
   function createNewTask(title, description, date, priority, tag) {
@@ -37,8 +43,13 @@ export function app() {
     taskList[index].tag = tag
   }
 
+  function getIndex(taskId) {
+    return taskList.findIndex(e => e.id === taskId)
+  }
+
   function deleteTask(index) {
     taskList.splice(index, 1)
+    updateLocalStorage()
   }
 
   const personalTag = () => {
@@ -54,12 +65,12 @@ export function app() {
   }
 
   const getTasksDueToday = () => {
-    const today = new Date()
-    return taskList.filter(task => task.dueDate.toDateString() === today.toDateString())
+    const today = new Date().toDateString()
+    return taskList.filter(task => task.dueDate === today)
   }
 
   const getTasksForNextWeek = () => {
-    const today = new Date();
+    const today = new Date().toDateString();
     const startOfNextWeek = startOfWeek(today, { weekStartsOn: 1 }); // Assuming week starts on Monday
     const endOfNextWeek = endOfWeek(today, { weekStartsOn: 1 });
 
@@ -88,6 +99,7 @@ export function app() {
     sortTasksByDueDate,
     getTasksDueToday,
     getTasksForNextWeek,
-    getTasksForCurrentWeek
+    getTasksForCurrentWeek,
+    getIndex
   }
 }
