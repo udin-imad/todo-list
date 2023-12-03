@@ -1,4 +1,4 @@
-import { compareAsc, startOfWeek, endOfWeek, isWithinInterval } from "date-fns";
+import { compareAsc, startOfWeek, endOfWeek, isWithinInterval, parse, parseISO } from "date-fns";
 
 export function app() {
   const taskList = JSON.parse(localStorage.getItem("taskList")) || [];
@@ -7,7 +7,7 @@ export function app() {
       this.id = Math.floor(Math.random() * 1000)
       this.title = title
       this.description = description
-      this.dueDate = this.getDueDate(date).toDateString()
+      this.dueDate = this.getDueDate(date).toISOString().slice(0, 10)
       this.priority = priority
       this.tag = tag
     }
@@ -66,16 +66,16 @@ export function app() {
 
   const getTasksDueToday = () => {
     const today = new Date().toDateString()
-    return taskList.filter(task => task.dueDate === today)
+    return taskList.filter(task => parseISO(task.dueDate).toDateString() === today)
   }
 
   const getTasksForNextWeek = () => {
-    const today = new Date().toDateString();
+    const today = new Date()
     const startOfNextWeek = startOfWeek(today, { weekStartsOn: 1 }); // Assuming week starts on Monday
     const endOfNextWeek = endOfWeek(today, { weekStartsOn: 1 });
 
     return taskList.filter(task =>
-      isWithinInterval(task.dueDate, { start: startOfNextWeek, end: endOfNextWeek })
+      isWithinInterval(parse(task.dueDate), { start: startOfNextWeek, end: endOfNextWeek })
     );
   }
 
@@ -85,7 +85,7 @@ export function app() {
     const endOfCurrentWeek = endOfWeek(today, { weekStartsOn: 1 });
 
     return taskList.filter(task =>
-      isWithinInterval(task.dueDate, { start: startOfCurrentWeek, end: endOfCurrentWeek })
+      isWithinInterval(parseISO(task.dueDate), { start: startOfCurrentWeek, end: endOfCurrentWeek })
     );
   }
 
