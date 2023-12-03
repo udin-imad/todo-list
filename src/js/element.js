@@ -1,5 +1,6 @@
 import { app } from "./app";
 import { table } from "./index";
+import Icon from "../icon/trash.svg"
 
 export function element() {
   const task = app()
@@ -41,9 +42,9 @@ export function element() {
       deleteButton.classList.add('delete-button');
       deleteCell.appendChild(deleteButton);
 
-      const img = document.createElement('img');
+      const img = new Image()
       img.classList.add('icon');
-      img.setAttribute('src', './icon/trash.svg');
+      img.src = Icon
       deleteButton.appendChild(img);
 
       const checkBox = document.createElement('input');
@@ -81,9 +82,9 @@ export function element() {
       deleteButton.classList.add('delete-button');
       deleteCell.appendChild(deleteButton);
 
-      const img = document.createElement('img');
+      const img = new Image()
       img.classList.add('icon');
-      img.setAttribute('src', './icon/trash.svg');
+      img.src = Icon;
       deleteButton.appendChild(img);
 
       const checkBox = document.createElement('input');
@@ -121,9 +122,9 @@ export function element() {
       deleteButton.classList.add('delete-button');
       deleteCell.appendChild(deleteButton);
 
-      const img = document.createElement('img');
+      const img = new Image();
       img.classList.add('icon');
-      img.setAttribute('src', './icon/trash.svg');
+      img.src = Icon;
       deleteButton.appendChild(img);
 
       const checkBox = document.createElement('input');
@@ -161,9 +162,9 @@ export function element() {
       deleteButton.classList.add('delete-button');
       deleteCell.appendChild(deleteButton);
 
-      const img = document.createElement('img');
+      const img = new Image();
       img.classList.add('icon');
-      img.setAttribute('src', './icon/trash.svg');
+      img.src = Icon;
       deleteButton.appendChild(img);
 
       const checkBox = document.createElement('input');
@@ -201,9 +202,9 @@ export function element() {
       deleteButton.classList.add('delete-button');
       deleteCell.appendChild(deleteButton);
 
-      const img = document.createElement('img');
+      const img = new Image();
       img.classList.add('icon');
-      img.setAttribute('src', './icon/trash.svg');
+      img.src = Icon;
       deleteButton.appendChild(img);
 
       const checkBox = document.createElement('input');

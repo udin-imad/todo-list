@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
   <title>ToDo List</title>
+  <script defer="defer" src="./js/main.js"></script>
 </head>
 
 <body>
@@ -30,25 +31,19 @@
     </div>
     <div id="content">
       <p>All Task</p>
-      <table id="task-list">
-      </table>
+      <table id="task-list"></table>
     </div>
     <dialog class="modal">
-      <form action="#">
-        <input type="text" name="title" id="title" aria-label="title" placeholder="Title">
-        <input type="text" name="description" id="description" aria-label="description" placeholder="Description">
-        <input type="date" name="date" id="date" aria-label="date">
-        <select name="priority" id="priority">
+      <form action="#"><input name="title" id="title" aria-label="title" placeholder="Title"> <input name="description"
+          id="description" aria-label="description" placeholder="Description"> <input type="date" name="date" id="date"
+          aria-label="date"> <select name="priority" id="priority">
           <option value="&#128681 &#128681 &#128681">&#128681 &#128681 &#128681</option>
           <option value="&#128681 &#128681">&#128681 &#128681</option>
           <option value="&#128681">&#128681</option>
-        </select>
-        <select name="tag" id="tag">
+        </select> <select name="tag" id="tag">
           <option value="Personal">Personal</option>
           <option value="Project">Project</option>
-        </select>
-        <button>Submit</button>
-      </form>
+        </select> <button>Submit</button></form>
     </dialog>
     <div id="footer">udin-imad &copy; 2023</div>
   </div>
